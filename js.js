@@ -13,9 +13,9 @@ let slider = document.getElementById('myRange');
 let sliderValueDiv = document.querySelector(".sliderValueDiv");
 
 slider.addEventListener("input", () =>{
-resetGrid(divContainer)
 let sliderValue = slider.value
-sliderValueDiv.textContent = sliderValue + " x " + sliderValue;
+resetGrid(divContainer)
+updateSliderValue(sliderValue)
 createGrid(sliderValue);
 })
 
@@ -35,4 +35,8 @@ function resetGrid(divContainer) {
     allDivs.forEach(element => {
         element.parentNode.removeChild(element);
     });
+}
+
+function updateSliderValue(sliderValue){
+    sliderValueDiv.textContent = sliderValue + " x " + sliderValue;
 }
