@@ -64,11 +64,30 @@ body {
 }
 header {
     padding: 2em;
+    background-color: #222222;
+    color: #eeb100;
 }
 main {
     flex: auto;
+    background-color: #f3f3f3;
 }
 footer {
     padding: 1em;
+    color: #ffffff;
+    background-color: #222222;
 }
  /* FLEXBOX LAYOUT */
+
+ button {
+    border: 3px solid #fbba00;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+    min-width: 100px;
+    min-height: 60px;
+ }
+ .button-box {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-around;
+ }
+ 
