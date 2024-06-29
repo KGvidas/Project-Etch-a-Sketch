@@ -140,6 +140,10 @@ footer {
 .slidecontainer {
     margin: 2em;
 }
+.sliderValueDiv {
+    font-size: 22px;
+    font-weight: bold;
+}
 .slider {
     -webkit-appearance: none;
     width: 100%;

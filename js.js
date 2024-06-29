@@ -8,4 +8,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
   });
   
-  
+let slider = document.getElementById('myRange');
+let sliderValueDiv = document.querySelector(".sliderValueDiv");
+
+slider.addEventListener("input", () =>{
+let sliderValue = slider.value
+sliderValueDiv.textContent = sliderValue + " x " + sliderValue;
+})
