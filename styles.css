@@ -78,9 +78,10 @@ footer {
 }
  /* FLEXBOX LAYOUT */
 
+ /* GENERAL STYLING */
  button {
     border: 3px solid #fbba00;
-    background-color: #f3f3f3;
+    background-color: #ffffff;
     border-radius: 8px;
     min-width: 100px;
     min-height: 60px;
@@ -104,3 +105,34 @@ footer {
     box-shadow: -8px 9px 89px -17px rgba(0,0,0,0.75);
     background-color: #ffffff;
 }
+
+ /* GENERAL STYLING */
+
+    /* STYLE FOR BUTTON WITH INPUT VALUE */
+ .color-picker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .color-input-wrapper {
+    height: 1.5em;
+    width: 1.5em;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+  }
+  .color-input-wrapper  input[type=color] {
+      position: absolute;
+      height: 2em;
+      width: 2em;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+      border: none;
+      margin: 0;
+      padding: 0;
+  }
+   /* STYLE FOR BUTTON WITH INPUT VALUE
