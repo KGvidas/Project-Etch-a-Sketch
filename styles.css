@@ -84,10 +84,23 @@ footer {
     border-radius: 8px;
     min-width: 100px;
     min-height: 60px;
+    font-size: 18px;
+    font-weight: bold;
  }
  .button-box {
     margin-top: 2em;
     display: flex;
     justify-content: space-around;
  }
- 
+.forDivContainer {
+    margin: 2em auto;
+    display: flex;
+    justify-content: center;
+}
+.container {
+    width: 350px;
+    height: 350px;
+    border: 1px solid #222222;
+    box-shadow: -8px 9px 89px -17px rgba(0,0,0,0.75);
+    background-color: #ffffff;
+}
