@@ -1,3 +1,4 @@
+// Make the slider fill up with color
 document.addEventListener('DOMContentLoaded', (event) => {
     const slider = document.getElementById('myRange');
     
@@ -6,4 +7,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
       this.style.background = `linear-gradient(to right, #eeb100 ${value}%, #f3f3f3 ${value}%)`;
     });
   });
+  
   
