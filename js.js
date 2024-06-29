@@ -8,10 +8,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
   });
   
+let divContainer = document.querySelector(".forDivContainer")  
 let slider = document.getElementById('myRange');
 let sliderValueDiv = document.querySelector(".sliderValueDiv");
 
 slider.addEventListener("input", () =>{
+resetGrid(divContainer)
 let sliderValue = slider.value
 sliderValueDiv.textContent = sliderValue + " x " + sliderValue;
+createGrid(sliderValue);
 })
+
+function createGrid(sliderValue){
+    for(let i = 0; i < (sliderValue ** 2); i++){
+        const div = document.createElement("div");
+        div.classList.add("newDiv");
+        const newHeight = 348 / sliderValue;
+        div.style.height = newHeight + 'px';
+        div.style.width = newHeight + 'px';
+        divContainer.appendChild(div);
+    }
+}
+
+function resetGrid(divContainer) {
+    let allDivs = document.querySelectorAll(".newDiv");
+    allDivs.forEach(element => {
+        element.parentNode.removeChild(element);
+    });
+}

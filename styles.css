@@ -94,17 +94,30 @@ footer {
     justify-content: space-around;
  }
 .forDivContainer {
+  width: 350px;
+    height: 350px;
+    border: 1px solid #222222;
+    box-shadow: -8px 9px 89px -17px rgba(0,0,0,0.75);
+    background-color: #ffffff;
     margin: 2em auto;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
-.container {
+ /* NEWLY CREATED DIV */
+ .newDiv {
+  border: 1px solid #222222;
+  display: flex;
+  box-sizing: border-box;
+  
+}
+/* .container {
     width: 350px;
     height: 350px;
     border: 1px solid #222222;
     box-shadow: -8px 9px 89px -17px rgba(0,0,0,0.75);
     background-color: #ffffff;
-}
+} */
 
  /* GENERAL STYLING */
 
@@ -179,3 +192,5 @@ footer {
     border: 2px solid #222222; /* Add the border to the thumb */
   }
   
+
+ 
