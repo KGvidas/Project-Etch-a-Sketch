@@ -19,15 +19,41 @@ updateSliderValue(sliderValue)
 createGrid(sliderValue);
 })
 
-function createGrid(sliderValue){
-    for(let i = 0; i < (sliderValue ** 2); i++){
+function createGrid(sliderValue) {
+    const gridSize = sliderValue ** 2;
+    const newSize = 348 / sliderValue;
+    const gridElements = createGridElements(gridSize, newSize);
+    appendGridElements(gridElements);
+    addHoverEffect(gridElements);
+}
+
+function createGridElements(gridSize, newSize) {
+    const gridElements = [];
+    for (let i = 0; i < gridSize; i++) {
         const div = document.createElement("div");
         div.classList.add("newDiv");
-        const newHeight = 348 / sliderValue;
-        div.style.height = newHeight + 'px';
-        div.style.width = newHeight + 'px';
-        divContainer.appendChild(div);
+        styleGridElement(div, newSize);
+        gridElements.push(div);
     }
+    return gridElements;
+}
+
+function styleGridElement(div, newSize) {
+    div.style.height = `${newSize}px`;
+    div.style.width = `${newSize}px`;
+}
+
+function appendGridElements(gridElements) {
+    const divContainer = document.querySelector(".forDivContainer");
+    gridElements.forEach(div => divContainer.appendChild(div));
+}
+
+function addHoverEffect(gridElements) {
+    gridElements.forEach((div) => {
+        div.addEventListener("mouseenter", () => {
+            div.classList.add("hovered");
+        });
+    });
 }
 
 function resetGrid(divContainer) {
@@ -40,3 +66,4 @@ function resetGrid(divContainer) {
 function updateSliderValue(sliderValue){
     sliderValueDiv.textContent = sliderValue + " x " + sliderValue;
 }
+
