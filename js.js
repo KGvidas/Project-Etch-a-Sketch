@@ -67,3 +67,18 @@ function updateSliderValue(sliderValue){
     sliderValueDiv.textContent = sliderValue + " x " + sliderValue;
 }
 
+function initializeContainer() {
+    const divContainer = document.querySelector(".forDivContainer");
+
+    // Create a single default div
+    const defaultDiv = document.createElement("div");
+    defaultDiv.classList.add("newDiv");
+    defaultDiv.style.height = '348px';
+    defaultDiv.style.width = '348px';
+    divContainer.appendChild(defaultDiv);
+
+    // Add event listeners to the default div
+    addHoverEffect([defaultDiv]);
+}
+// Initialize the container with a single default div on page load
+document.addEventListener("DOMContentLoaded", initializeContainer);
