@@ -8,11 +8,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const colorBgBtn = document.querySelector(".color-pickerBG");
     const colorBgPicker = document.getElementById("color-pickerBG");
     const eraserBtn = document.querySelector(".eraser");
-    const clearBtn = document.querySelector(".clear")
+    const clearBtn = document.querySelector(".clear");
+    const rainbowBtn = document.querySelector(".rainbow");
 
     // Initialize brush color and background color
     let brushColor = colorPicker.value;
     let bgColor = "#f3f3f3"; // Default background color
+    let isRainbow = false; // Track if rainbow mode is enabled
 
     // Event listener for slider input
     slider.addEventListener('input', function() {
@@ -26,6 +28,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Event listener for color picker input
     colorPicker.addEventListener("input", () => {
+        isRainbow = !isRainbow; // Toggle rainbow mode
         brushColor = colorPicker.value;
     });
 
@@ -52,9 +55,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
         allDivs.forEach(element => {
             element.style.backgroundColor = bgColor;
         });
+    });
 
+    // Function to get a random color
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
-    )
+
+    // Event listener for rainbow button click
+    rainbowBtn.addEventListener("click", () => {
+        isRainbow = !isRainbow; // Toggle rainbow mode
+        addHoverEffect(document.querySelectorAll(".newDiv"));
+    });
+
     // Function to create the grid
     function createGrid(sliderValue) {
         const gridSize = sliderValue ** 2;
@@ -91,9 +109,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Function to add hover effect to grid elements
     function addHoverEffect(gridElements) {
         gridElements.forEach((div) => {
-            div.addEventListener("mouseenter", () => {
-                div.style.backgroundColor = brushColor;
-            });
+            div.onmouseenter = () => {
+                div.style.backgroundColor = isRainbow ? getRandomColor() : brushColor;
+            };
         });
     }
 
