@@ -83,10 +83,12 @@ function initializeContainer() {
 document.addEventListener("DOMContentLoaded", initializeContainer);
 
 let colorPicker = document.getElementById("colorPicker");
+let brushColor = colorPicker.value;
+let colorPickerBtn = document.querySelector(".color-picker");
 
 colorPicker.addEventListener("input", () => {
-    console.log(colorPicker.value);
     brushColor = colorPicker.value;
 })
 
-let brushColor = colorPicker.value;
+
+colorPickerBtn.addEventListener('click', e => colorPicker.click());
