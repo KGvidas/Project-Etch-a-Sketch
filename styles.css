@@ -183,7 +183,4 @@ footer {
     position: relative; /* Ensures the z-index works */
     border: 2px solid #222222; /* Add the border to the thumb */
   }
-  .hovered {
-    background-color: black;
-  }
- 
+  

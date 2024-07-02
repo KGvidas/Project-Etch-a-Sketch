@@ -51,7 +51,7 @@ function appendGridElements(gridElements) {
 function addHoverEffect(gridElements) {
     gridElements.forEach((div) => {
         div.addEventListener("mouseenter", () => {
-            div.classList.add("hovered");
+            div.style.backgroundColor = "black";
         });
     });
 }
