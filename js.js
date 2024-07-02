@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
       this.style.background = `linear-gradient(to right, #eeb100 ${value}%, #f3f3f3 ${value}%)`;
     });
   });
-  
 let divContainer = document.querySelector(".forDivContainer")  
 let slider = document.getElementById('myRange');
 let sliderValueDiv = document.querySelector(".sliderValueDiv");
@@ -51,7 +50,7 @@ function appendGridElements(gridElements) {
 function addHoverEffect(gridElements) {
     gridElements.forEach((div) => {
         div.addEventListener("mouseenter", () => {
-            div.style.backgroundColor = "black";
+            div.style.backgroundColor = brushColor;
         });
     });
 }
@@ -82,3 +81,12 @@ function initializeContainer() {
 }
 // Initialize the container with a single default div on page load
 document.addEventListener("DOMContentLoaded", initializeContainer);
+
+let colorPicker = document.getElementById("colorPicker");
+
+colorPicker.addEventListener("input", () => {
+    console.log(colorPicker.value);
+    brushColor = colorPicker.value;
+})
+
+let brushColor = colorPicker.value;
