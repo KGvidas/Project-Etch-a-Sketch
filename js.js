@@ -1,97 +1,123 @@
-// Make the slider fill up with color
 document.addEventListener('DOMContentLoaded', (event) => {
+    // Get references to DOM elements
     const slider = document.getElementById('myRange');
-    
+    const divContainer = document.querySelector(".forDivContainer");
+    const sliderValueDiv = document.querySelector(".sliderValueDiv");
+    const colorPicker = document.getElementById("colorPicker");
+    const colorPickerBtn = document.querySelector(".color-picker");
+    const colorBgBtn = document.querySelector(".color-pickerBG");
+    const colorBgPicker = document.getElementById("color-pickerBG");
+    const eraserBtn = document.querySelector(".eraser");
+
+    // Initialize brush color and background color
+    let brushColor = colorPicker.value;
+    let bgColor = "#f3f3f3"; // Default background color
+
+    // Event listener for slider input
     slider.addEventListener('input', function() {
-      const value = (this.value - this.min) / (this.max - this.min) * 100;
-      this.style.background = `linear-gradient(to right, #eeb100 ${value}%, #f3f3f3 ${value}%)`;
+        const value = (this.value - this.min) / (this.max - this.min) * 100;
+        this.style.background = `linear-gradient(to right, #eeb100 ${value}%, #f3f3f3 ${value}%)`;
+        let sliderValue = slider.value;
+        resetGrid();
+        updateSliderValue(sliderValue);
+        createGrid(sliderValue);
     });
-  });
-let divContainer = document.querySelector(".forDivContainer")  
-let slider = document.getElementById('myRange');
-let sliderValueDiv = document.querySelector(".sliderValueDiv");
 
-slider.addEventListener("input", () =>{
-let sliderValue = slider.value
-resetGrid(divContainer)
-updateSliderValue(sliderValue)
-createGrid(sliderValue);
-})
+    // Event listener for color picker input
+    colorPicker.addEventListener("input", () => {
+        brushColor = colorPicker.value;
+    });
 
-function createGrid(sliderValue) {
-    const gridSize = sliderValue ** 2;
-    const newSize = 348 / sliderValue;
-    const gridElements = createGridElements(gridSize, newSize, bgColor);
-    appendGridElements(gridElements);
-    addHoverEffect(gridElements);
-}
+    // Event listener for color picker button click
+    colorPickerBtn.addEventListener('click', () => colorPicker.click());
 
-function createGridElements(gridSize, newSize, bgColor) {
-    const gridElements = [];
-    for (let i = 0; i < gridSize; i++) {
-        const div = document.createElement("div");
-        div.classList.add("newDiv");
-        styleGridElement(div, newSize, bgColor);
-        gridElements.push(div);
+    // Event listener for background color picker button click
+    colorBgBtn.addEventListener('click', () => colorBgPicker.click());
+
+    // Event listener for background color picker input
+    colorBgPicker.addEventListener("input", () => {
+        bgColor = colorBgPicker.value; 
+        updateBgColor(bgColor);
+    });
+
+    // Event listener for eraser button click
+    eraserBtn.addEventListener("click", () => {
+        brushColor = bgColor;
+    });
+
+    // Function to create the grid
+    function createGrid(sliderValue) {
+        const gridSize = sliderValue ** 2;
+        const newSize = 348 / sliderValue;
+        const gridElements = createGridElements(gridSize, newSize, bgColor);
+        appendGridElements(gridElements);
+        addHoverEffect(gridElements);
     }
-    return gridElements;
-}
 
-function styleGridElement(div, newSize, bgColor) {
-    div.style.height = `${newSize}px`;
-    div.style.width = `${newSize}px`;
-    console.log(bgColor)
-    div.style.backgroundColor = bgColor;
-}
+    // Function to create grid elements
+    function createGridElements(gridSize, newSize, bgColor) {
+        const gridElements = [];
+        for (let i = 0; i < gridSize; i++) {
+            const div = document.createElement("div");
+            div.classList.add("newDiv");
+            styleGridElement(div, newSize, bgColor);
+            gridElements.push(div);
+        }
+        return gridElements;
+    }
 
-function appendGridElements(gridElements) {
-    const divContainer = document.querySelector(".forDivContainer");
-    gridElements.forEach(div => divContainer.appendChild(div));
-}
+    // Function to style grid elements
+    function styleGridElement(div, newSize, bgColor) {
+        div.style.height = `${newSize}px`;
+        div.style.width = `${newSize}px`;
+        div.style.backgroundColor = bgColor;
+    }
 
-function addHoverEffect(gridElements) {
-    gridElements.forEach((div) => {
-        div.addEventListener("mouseenter", () => {
-            div.style.backgroundColor = brushColor;
+    // Function to append grid elements to the container
+    function appendGridElements(gridElements) {
+        gridElements.forEach(div => divContainer.appendChild(div));
+    }
+
+    // Function to add hover effect to grid elements
+    function addHoverEffect(gridElements) {
+        gridElements.forEach((div) => {
+            div.addEventListener("mouseenter", () => {
+                div.style.backgroundColor = brushColor;
+            });
         });
-    });
-}
+    }
 
-function resetGrid(divContainer) {
-    let allDivs = document.querySelectorAll(".newDiv");
-    allDivs.forEach(element => {
-        element.parentNode.removeChild(element);
-    });
-}
+    // Function to reset the grid
+    function resetGrid() {
+        let allDivs = document.querySelectorAll(".newDiv");
+        allDivs.forEach(element => {
+            element.parentNode.removeChild(element);
+        });
+    }
 
-function updateSliderValue(sliderValue){
-    sliderValueDiv.textContent = sliderValue + " x " + sliderValue;
-}
+    // Function to update the slider value display
+    function updateSliderValue(sliderValue) {
+        sliderValueDiv.textContent = sliderValue + " x " + sliderValue;
+    }
 
-function initializeContainer() {
-    const divContainer = document.querySelector(".forDivContainer");
+    // Function to update the background color of all grid elements
+    function updateBgColor(bgColor) {
+        let allDivs = document.querySelectorAll(".newDiv");
+        allDivs.forEach(div => {
+            div.style.backgroundColor = bgColor;
+        });
+    }
 
-    // Create a single default div
-    const defaultDiv = document.createElement("div");
-    defaultDiv.classList.add("newDiv");
-    defaultDiv.style.height = '348px';
-    defaultDiv.style.width = '348px';
-    divContainer.appendChild(defaultDiv);
+    // Function to initialize the container with a single default div
+    function initializeContainer() {
+        const defaultDiv = document.createElement("div");
+        defaultDiv.classList.add("newDiv");
+        defaultDiv.style.height = '348px';
+        defaultDiv.style.width = '348px';
+        divContainer.appendChild(defaultDiv);
+        addHoverEffect([defaultDiv]);
+    }
 
-    // Add event listeners to the default div
-    addHoverEffect([defaultDiv]);
-}
-// Initialize the container with a single default div on page load
-document.addEventListener("DOMContentLoaded", initializeContainer);
-
-let colorPicker = document.getElementById("colorPicker");
-let brushColor = colorPicker.value;
-let colorPickerBtn = document.querySelector(".color-picker");
-
-colorPicker.addEventListener("input", () => {
-    brushColor = colorPicker.value;
-})
-
-
-colorPickerBtn.addEventListener('click', e => colorPicker.click());
-
+    // Initialize the container on page load
+    initializeContainer();
+});
