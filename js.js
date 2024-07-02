@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const colorBgBtn = document.querySelector(".color-pickerBG");
     const colorBgPicker = document.getElementById("color-pickerBG");
     const eraserBtn = document.querySelector(".eraser");
+    const clearBtn = document.querySelector(".clear")
 
     // Initialize brush color and background color
     let brushColor = colorPicker.value;
@@ -45,6 +46,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
         brushColor = bgColor;
     });
 
+    // Event listener for clear button click
+    clearBtn.addEventListener("click", () => {
+        let allDivs = document.querySelectorAll(".newDiv");
+        allDivs.forEach(element => {
+            element.style.backgroundColor = bgColor;
+        });
+
+    }
+    )
     // Function to create the grid
     function createGrid(sliderValue) {
         const gridSize = sliderValue ** 2;
