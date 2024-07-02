@@ -21,25 +21,27 @@ createGrid(sliderValue);
 function createGrid(sliderValue) {
     const gridSize = sliderValue ** 2;
     const newSize = 348 / sliderValue;
-    const gridElements = createGridElements(gridSize, newSize);
+    const gridElements = createGridElements(gridSize, newSize, bgColor);
     appendGridElements(gridElements);
     addHoverEffect(gridElements);
 }
 
-function createGridElements(gridSize, newSize) {
+function createGridElements(gridSize, newSize, bgColor) {
     const gridElements = [];
     for (let i = 0; i < gridSize; i++) {
         const div = document.createElement("div");
         div.classList.add("newDiv");
-        styleGridElement(div, newSize);
+        styleGridElement(div, newSize, bgColor);
         gridElements.push(div);
     }
     return gridElements;
 }
 
-function styleGridElement(div, newSize) {
+function styleGridElement(div, newSize, bgColor) {
     div.style.height = `${newSize}px`;
     div.style.width = `${newSize}px`;
+    console.log(bgColor)
+    div.style.backgroundColor = bgColor;
 }
 
 function appendGridElements(gridElements) {
@@ -92,3 +94,4 @@ colorPicker.addEventListener("input", () => {
 
 
 colorPickerBtn.addEventListener('click', e => colorPicker.click());
+

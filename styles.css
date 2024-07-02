@@ -63,7 +63,7 @@ body {
     flex-direction: column;
 }
 header {
-    padding: 2em;
+    padding: 1em;
     background-color: #222222;
     color: #eeb100;
 }
@@ -72,7 +72,7 @@ main {
     background-color: #f3f3f3;
 }
 footer {
-    padding: 1em;
+    padding: 0.5em;
     color: #ffffff;
     background-color: #222222;
 }
@@ -184,3 +184,30 @@ footer {
     border: 2px solid #222222; /* Add the border to the thumb */
   }
   
+  /* LOWER BUTTON BOX */
+  .color-pickerBG {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .color-input-wrapperBG {
+  height: 1.5em;
+  width: 1.5em;
+  overflow: hidden;
+  border-radius: 10%;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+.color-input-wrapperBG  input[type=color] {
+    position: absolute;
+    height: 2em;
+    width: 2em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
