@@ -10,11 +10,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const eraserBtn = document.querySelector(".eraser");
     const clearBtn = document.querySelector(".clear");
     const rainbowBtn = document.querySelector(".rainbow");
+    const shadingBtn = document.querySelector(".shading");
+
+    console.log('slider:', slider);
+    console.log('divContainer:', divContainer);
+    console.log('sliderValueDiv:', sliderValueDiv);
+    console.log('colorPicker:', colorPicker);
+    console.log('colorPickerBtn:', colorPickerBtn);
+    console.log('colorBgBtn:', colorBgBtn);
+    console.log('colorBgPicker:', colorBgPicker);
+    console.log('eraserBtn:', eraserBtn);
+    console.log('clearBtn:', clearBtn);
+    console.log('rainbowBtn:', rainbowBtn);
+    console.log('shadingBtn:', shadingBtn);
 
     // Initialize brush color and background color
     let brushColor = colorPicker.value;
     let bgColor = "#f3f3f3"; // Default background color
     let isRainbow = false; // Track if rainbow mode is enabled
+    let isDarkening = false;
 
     // Event listener for slider input
     slider.addEventListener('input', function() {
@@ -28,7 +42,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Event listener for color picker input
     colorPicker.addEventListener("input", () => {
-        isRainbow = !isRainbow; // Toggle rainbow mode
+        isRainbow = false; // Ensure rainbow mode is off when changing color manually
         brushColor = colorPicker.value;
     });
 
@@ -56,6 +70,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             element.style.backgroundColor = bgColor;
         });
     });
+
+    //Event listener for shading button click
+    shadingBtn.addEventListener("click", () =>  {
+        isDarkening = !isDarkening; // Toggle darkening mode
+        addHoverEffect(document.querySelectorAll(".newDiv"));
+    });
+
+    function darkening(element){
+       let opacity = Number(element.style.opacity);
+       element.style.opacity = opacity >= 1 ? "1" : opacity + 0.1 + "";
+    }
 
     // Function to get a random color
     function getRandomColor() {
@@ -110,7 +135,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function addHoverEffect(gridElements) {
         gridElements.forEach((div) => {
             div.onmouseenter = () => {
-                div.style.backgroundColor = isRainbow ? getRandomColor() : brushColor;
+                div.style.backgroundColor = 
+                isRainbow ? getRandomColor() : 
+                isDarkening ? darkening(div) :
+                brushColor; 
             };
         });
     }
